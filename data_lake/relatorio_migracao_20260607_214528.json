@@ -1,0 +1,81 @@
+{
+  "pipeline": "oracle_to_cloud_migration",
+  "data_execucao": "2026-06-07T21:45:28.645035",
+  "origem": "Oracle 21c XE — XEPDB1.financeiro",
+  "destino_datalake": "data_lake\\bronze",
+  "destino_cloud": "PostgreSQL 15 — financeiro_cloud",
+  "tabelas": [
+    {
+      "tabela": "categorias_transacao",
+      "linhas": 14,
+      "arquivo": "data_lake\\bronze\\categorias_transacao\\ano=2026\\mes=06\\dia=07\\categorias_transacao.parquet",
+      "status": "sucesso"
+    },
+    {
+      "tabela": "clientes",
+      "linhas": 300,
+      "arquivo": "data_lake\\bronze\\clientes\\ano=2026\\mes=06\\dia=07\\clientes.parquet",
+      "status": "sucesso"
+    },
+    {
+      "tabela": "comerciantes",
+      "linhas": 80,
+      "arquivo": "data_lake\\bronze\\comerciantes\\ano=2026\\mes=06\\dia=07\\comerciantes.parquet",
+      "status": "sucesso"
+    },
+    {
+      "tabela": "contas",
+      "linhas": 613,
+      "arquivo": "data_lake\\bronze\\contas\\ano=2026\\mes=06\\dia=07\\contas.parquet",
+      "status": "sucesso"
+    },
+    {
+      "tabela": "transacoes",
+      "linhas": 30000,
+      "arquivo": "data_lake\\bronze\\transacoes\\ano=2026\\mes=06\\dia=07\\transacoes.parquet",
+      "status": "sucesso"
+    }
+  ],
+  "validacao": [
+    {
+      "tabela": "categorias_transacao",
+      "count_oracle": 14,
+      "count_postgres": 14,
+      "count_ok": true,
+      "timestamp": "2026-06-07T21:45:27.553973"
+    },
+    {
+      "tabela": "clientes",
+      "count_oracle": 300,
+      "count_postgres": 300,
+      "count_ok": true,
+      "timestamp": "2026-06-07T21:45:27.639062"
+    },
+    {
+      "tabela": "comerciantes",
+      "count_oracle": 80,
+      "count_postgres": 80,
+      "count_ok": true,
+      "timestamp": "2026-06-07T21:45:27.711900"
+    },
+    {
+      "tabela": "contas",
+      "count_oracle": 613,
+      "count_postgres": 613,
+      "count_ok": true,
+      "timestamp": "2026-06-07T21:45:27.745715"
+    },
+    {
+      "tabela": "transacoes",
+      "count_oracle": 30000,
+      "count_postgres": 30000,
+      "count_ok": true,
+      "timestamp": "2026-06-07T21:45:28.622089",
+      "soma_oracle": 48879355.57,
+      "soma_postgres": 48879355.57,
+      "soma_ok": true
+    }
+  ],
+  "total_tabelas": 5,
+  "validacoes_ok": 5
+}
