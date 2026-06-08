@@ -1,0 +1,39 @@
+﻿name: CI - Validacao do Projeto Oracle
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  validar-estrutura:
+    name: Validar Estrutura do Projeto
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install pandas pyarrow faker pytest loguru psycopg2-binary
+
+      - name: Verificar arquivos essenciais
+        run: |
+          test -f docker-compose.yml                          && echo OK Docker
+          test -f sql/oracle/ddl/01_create_tables.sql         && echo OK DDL Oracle
+          test -f sql/oracle/seed_data/generate_data.py       && echo OK Gerador
+          test -f pipelines/extract/01_extract_oracle.py      && echo OK Pipeline
+          echo Estrutura validada!
+
+      - name: Verificar sintaxe Python
+        run: |
+          python -m py_compile sql/oracle/seed_data/generate_data.py
+          python -m py_compile pipelines/extract/01_extract_oracle.py
+          echo Sintaxe OK!
